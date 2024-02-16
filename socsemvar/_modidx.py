@@ -5,4 +5,8 @@ d = { 'settings': { 'branch': 'main',
                 'doc_host': 'https://wuqui.github.io',
                 'git_url': 'https://github.com/wuqui/socsemvar',
                 'lib_path': 'socsemvar'},
-  'syms': {'socsemvar.core': {'socsemvar.core.foo': ('core.html#foo', 'socsemvar/core.py')}}}
+  'syms': { 'socsemvar.core': {'socsemvar.core.foo': ('core.html#foo', 'socsemvar/core.py')},
+            'socsemvar.semchange': { 'socsemvar.semchange.get_fpaths_subreddit': ( 'semantic-change.html#get_fpaths_subreddit',
+                                                                                   'socsemvar/semchange.py'),
+                                     'socsemvar.semchange.get_fpaths_year': ( 'semantic-change.html#get_fpaths_year',
+                                                                              'socsemvar/semchange.py')}}}
