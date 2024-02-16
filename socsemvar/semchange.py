@@ -3,12 +3,12 @@
 # %% auto 0
 __all__ = ['get_fpaths_year', 'get_fpaths_subreddit']
 
-# %% ../nbs/01_semantic-change.ipynb 2
+# %% ../nbs/01_semantic-change.ipynb 3
 def get_fpaths_year(year: str, dir='../../data/years'): 
 	dir_path = Path(dir)
 	return list(dir_path.glob(f'{year}*.csv'))
 
-# %% ../nbs/01_semantic-change.ipynb 4
+# %% ../nbs/01_semantic-change.ipynb 5
 def get_fpaths_subreddit(subreddit: str, dir='../../data/subreddits'): 
 	dir_path = Path(dir)
 	return list(dir_path.glob(f'{subreddit}*.csv'))
