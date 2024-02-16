@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "socsemvar"
+  site-url: "https://wuqui.github.io/socsemvar"
+  description: "Analysing semantic change and socio-semantic variation on Reddit."
+  repo-branch: main
+  repo-url: "https://github.com/wuqui/socsemvar"
