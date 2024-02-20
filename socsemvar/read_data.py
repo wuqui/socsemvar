@@ -8,17 +8,19 @@ from pathlib import Path
 import pandas as pd
 
 # %% ../nbs/01_read_data.ipynb 9
-def get_fpaths_year(year: str, dir='../data_test/years'): 
+def get_fpaths_year(year: str,
+		    dir='../data_test/years'
+		    ) -> list: 
 	dir_path = Path(dir)
 	return list(dir_path.glob(f'{year}*.csv'))
 
 # %% ../nbs/01_read_data.ipynb 11
-def get_fpaths_subreddit(subreddit: str, dir='../data_test/subreddits'): 
+def get_fpaths_subreddit(subreddit: str, dir: str='../data_test/subreddits') -> list: 
 	dir_path = Path(dir)
 	return list(dir_path.glob(f'{subreddit}*.csv'))
 
 # %% ../nbs/01_read_data.ipynb 16
-def read_one_comments_csv(fpath):
+def read_one_comments_csv(fpath: str) -> pd.DataFrame:
     try:
         comments = pd.read_csv(
             fpath,
@@ -43,7 +45,7 @@ def read_one_comments_csv(fpath):
         print(f'{fpath} is empty')
 
 # %% ../nbs/01_read_data.ipynb 19
-def read_multi_comments_csvs(fpaths: list):
+def read_multi_comments_csvs(fpaths: list) -> pd.DataFrame:
     comments_lst = []
     for fpath in fpaths:
         comments = read_one_comments_csv(fpath)
