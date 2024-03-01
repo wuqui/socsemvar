@@ -5,3 +5,4 @@ website:
       - 00_overview.ipynb
       - 01_read_data.ipynb
       - 02_preprocessing.ipynb
+      - 03_embeddings.ipynb

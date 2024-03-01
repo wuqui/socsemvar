@@ -14,10 +14,10 @@ it is recommended to install this package in a virtual environment
 (e.g. using `conda`).
 
 The Reddit data used for this paper are too big to make them available
-here. Some parts of the code cannot be executed without having access to
-these datasets. The full datasets of Reddit comments and the models
-trained from these comments can be requested via email. The datasets and
-models allow to reproduce our results.
+here. Therefore, the code in this repository uses a smaller random
+sample of the original data. The full datasets of Reddit comments and
+the models trained from these comments can be requested via email and
+allow to reproduce our results.
 
 This repository provides the code used to process the Reddit comments,
 train the models, and produce the results presented in our paper. The
@@ -25,11 +25,3 @@ code was written and documented using the literate programming framework
 `nbdev` and the documentation is available here:
 
 <https://wuqui.github.io/socsemvar/>
-
-<!-- The code used for the tables and figures contained in the paper can be found directly via the following links:
-&#10;| Reference | Link                                                                           |
-|-----------|--------------------------------------------------------------------------------|
-| Table 2   | [semantic neologisms](https://wuqui.github.io/neocov/#semantic-neologisms)     |
-| Figure 1  | [Covid-related communities](https://wuqui.github.io/neocov/#covid-communities) |
-| Figure 2  | [Semantic axes](https://wuqui.github.io/neocov/#sem-axis)                      |
-| Figure 3  | [Semantic maps for _vaccines_](https://wuqui.github.io/neocov/#sem-maps)       | -->
