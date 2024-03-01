@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.550">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>socsemvar - read data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="styles.css">
+<meta property="og:title" content="socsemvar - read data">
+<meta property="og:description" content="Analysing semantic change and socio-semantic variation on Reddit.">
+<meta property="og:site_name" content="socsemvar">
+<meta name="twitter:title" content="socsemvar - read data">
+<meta name="twitter:description" content="Analysing semantic change and socio-semantic variation on Reddit.">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">socsemvar</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools">
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./read_data.html">read data</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SocSemVar</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./read_data.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">read data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preprocessing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">preprocessing</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./embeddings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">embeddings</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#create-test-data" id="toc-create-test-data" class="nav-link active" data-scroll-target="#create-test-data">create test data</a></li>
+  <li><a href="#read-data" id="toc-read-data" class="nav-link" data-scroll-target="#read-data">read data</a>
+  <ul class="collapse">
+  <li><a href="#get-file-paths" id="toc-get-file-paths" class="nav-link" data-scroll-target="#get-file-paths">get file paths</a></li>
+  <li><a href="#get_fpaths_year" id="toc-get_fpaths_year" class="nav-link" data-scroll-target="#get_fpaths_year">get_fpaths_year</a></li>
+  <li><a href="#get_fpaths_subreddit" id="toc-get_fpaths_subreddit" class="nav-link" data-scroll-target="#get_fpaths_subreddit">get_fpaths_subreddit</a></li>
+  <li><a href="#read-comments" id="toc-read-comments" class="nav-link" data-scroll-target="#read-comments">read comments</a></li>
+  <li><a href="#read_one_comments_csv" id="toc-read_one_comments_csv" class="nav-link" data-scroll-target="#read_one_comments_csv">read_one_comments_csv</a></li>
+  <li><a href="#read_multi_comments_csvs" id="toc-read_multi_comments_csvs" class="nav-link" data-scroll-target="#read_multi_comments_csvs">read_multi_comments_csvs</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/wuqui/socsemvar/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">read data</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
+<section id="create-test-data" class="level2">
+<h2 class="anchored" data-anchor-id="create-test-data">create test data</h2>
+<p>This repository only contains a sample of the original data because of size constraints. Below, we create a sample of the original data.</p>
+<div id="cell-5" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tqdm.notebook <span class="im">import</span> tqdm</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>src_dir <span class="op">=</span> Path(<span class="st">'../../data'</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>dest_dir <span class="op">=</span> Path(<span class="st">'../data_test'</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> subdir <span class="kw">in</span> src_dir.rglob(<span class="st">'*'</span>):</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> subdir.is_dir():</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        dest_subdir <span class="op">=</span> dest_dir <span class="op">/</span> subdir.relative_to(src_dir)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        dest_subdir.mkdir(parents<span class="op">=</span><span class="va">True</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> file_path <span class="kw">in</span> tqdm(<span class="bu">list</span>(subdir.glob(<span class="st">'*.csv'</span>))):</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>            df <span class="op">=</span> pd.read_csv(file_path, on_bad_lines<span class="op">=</span><span class="st">'skip'</span>, engine<span class="op">=</span><span class="st">'python'</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>            df_sample <span class="op">=</span> df.sample(n<span class="op">=</span><span class="bu">min</span>(n, <span class="bu">len</span>(df)), random_state<span class="op">=</span><span class="dv">58</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>            sample_file_path <span class="op">=</span> dest_subdir <span class="op">/</span> file_path.name</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>            df_sample.to_csv(sample_file_path, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"6b3544a69fda43f9a7e3d2146809b5f4","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"eab3fe8c5d904c37a19fd82c4760ea70","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"548bf387542a479f92373cf52caea9d7","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+</div>
+</section>
+<section id="read-data" class="level2">
+<h2 class="anchored" data-anchor-id="read-data">read data</h2>
+<section id="get-file-paths" class="level3">
+<h3 class="anchored" data-anchor-id="get-file-paths">get file paths</h3>
+<div id="cell-8" class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_fpaths_year(year: <span class="bu">str</span>,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>            <span class="bu">dir</span><span class="op">=</span><span class="st">'../data_test/years'</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>            ) <span class="op">-&gt;</span> <span class="bu">list</span>: </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    dir_path <span class="op">=</span> Path(<span class="bu">dir</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">list</span>(dir_path.glob(<span class="ss">f'</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">*.csv'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<p><a href="https://github.com/wuqui/socsemvar/blob/main/socsemvar/read_data.py#L11" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="get_fpaths_year" class="level3">
+<h3 class="anchored" data-anchor-id="get_fpaths_year">get_fpaths_year</h3>
+<blockquote class="blockquote">
+<pre><code> get_fpaths_year (year:str, dir='../data_test/years')</code></pre>
+</blockquote>
+<div id="cell-10" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>get_fpaths_year(<span class="st">'2020'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>[PosixPath('../data_test/years/2020-04-14_21:20:57___2020-04-14_21:59:59.csv'),
+ PosixPath('../data_test/years/2020-04-07_21:19:06___2020-04-07_21:59:59.csv'),
+ PosixPath('../data_test/years/2020-06-14_21:19:36___2020-06-14_21:59:59.csv'),
+ PosixPath('../data_test/years/2020-10-14_21:19:48___2020-10-14_21:59:59.csv'),
+ PosixPath('../data_test/years/2020-06-07_21:19:08___2020-06-07_21:59:59.csv'),
+ PosixPath('../data_test/years/2020-02-07_22:18:35___2020-02-07_22:59:59.csv'),
+ PosixPath('../data_test/years/2020-07-14_21:22:47___2020-07-14_21:59:59.csv'),
+ PosixPath('../data_test/years/2020-06-01_21:59:59___2020-06-01_21:22:24.csv'),
+ PosixPath('../data_test/years/2020-09-19_21:14:30___2020-09-19_21:59:59.csv'),
+ PosixPath('../data_test/years/2020-07-01_21:59:59___2020-07-01_21:23:38.csv'),
+ PosixPath('../data_test/years/2020-10-19_14:18:54___2020-10-19_14:58:31.csv'),
+ PosixPath('../data_test/years/2020-02-01_22:59:59___2020-02-01_22:07:59.csv'),
+ PosixPath('../data_test/years/2020-08-14_21:23:04___2020-08-14_21:59:59.csv'),
+ PosixPath('../data_test/years/2020-03-19_22:14:44___2020-03-19_22:59:59.csv'),
+ PosixPath('../data_test/years/2020-11-01_22:59:59___2020-11-01_22:20:51.csv'),
+ PosixPath('../data_test/years/2020-01-01_22:59:59___2020-01-01_22:13:27.csv'),
+ PosixPath('../data_test/years/2020-07-19_21:19:00___2020-07-19_21:59:59.csv'),
+ PosixPath('../data_test/years/2020-10-07_21:20:42___2020-10-07_21:59:59.csv'),
+ PosixPath('../data_test/years/2020-08-01_21:59:59___2020-08-01_21:17:27.csv'),
+ PosixPath('../data_test/years/2020-03-07_22:37:38___2020-03-07_22:59:59.csv'),
+ PosixPath('../data_test/years/2020-05-14_21:22:43___2020-05-14_21:59:59.csv'),
+ PosixPath('../data_test/years/2020-12-07_22:21:23___2020-12-07_22:59:59.csv'),
+ PosixPath('../data_test/years/2020-03-14_22:09:26___2020-03-14_22:59:59.csv'),
+ PosixPath('../data_test/years/2020-05-01_21:59:59___2020-05-01_21:19:50.csv'),
+ PosixPath('../data_test/years/2020-01-19_22:39:11___2020-01-19_22:59:59.csv'),
+ PosixPath('../data_test/years/2020-08-07_21:22:06___2020-08-07_21:59:59.csv'),
+ PosixPath('../data_test/years/2020-09-07_21:19:15___2020-09-07_21:59:59.csv'),
+ PosixPath('../data_test/years/2020-07-07_21:22:39___2020-07-07_21:59:59.csv'),
+ PosixPath('../data_test/years/2020-04-19_21:17:49___2020-04-19_21:59:59.csv'),
+ PosixPath('../data_test/years/2020-01-14_22:13:57___2020-01-14_22:59:59.csv'),
+ PosixPath('../data_test/years/2020-11-19_22:27:49___2020-11-19_22:59:59.csv'),
+ PosixPath('../data_test/years/2020-12-01_22:59:59___2020-12-01_22:22:27.csv'),
+ PosixPath('../data_test/years/2020-05-07_21:22:03___2020-05-07_21:59:59.csv'),
+ PosixPath('../data_test/years/2020-01-07_22:21:30___2020-01-07_22:59:59.csv'),
+ PosixPath('../data_test/years/2020-11-07_22:19:48___2020-11-07_22:59:59.csv'),
+ PosixPath('../data_test/years/2020-11-14_22:15:34___2020-11-14_22:59:59.csv'),
+ PosixPath('../data_test/years/2020-09-14_21:31:19___2020-09-14_21:59:59.csv'),
+ PosixPath('../data_test/years/2020-05-19_21:22:04___2020-05-19_21:59:59.csv'),
+ PosixPath('../data_test/years/2020-09-01_21:59:59___2020-09-01_21:24:54.csv'),
+ PosixPath('../data_test/years/2020-10-01_21:59:59___2020-10-01_21:20:26.csv'),
+ PosixPath('../data_test/years/2020-12-19_22:29:40___2020-12-19_22:59:59.csv'),
+ PosixPath('../data_test/years/2020-03-01_22:59:59___2020-03-01_22:11:57.csv'),
+ PosixPath('../data_test/years/2020-04-01_21:59:59___2020-04-01_21:18:25.csv'),
+ PosixPath('../data_test/years/2020-12-14_22:21:47___2020-12-14_22:59:59.csv'),
+ PosixPath('../data_test/years/2020-02-14_22:23:09___2020-02-14_22:59:59.csv'),
+ PosixPath('../data_test/years/2020-02-19_22:14:28___2020-02-19_22:59:59.csv'),
+ PosixPath('../data_test/years/2020-06-19_21:18:29___2020-06-19_21:59:59.csv'),
+ PosixPath('../data_test/years/2020-08-19_21:22:40___2020-08-19_21:59:59.csv')]</code></pre>
+</div>
+</div>
+<div id="cell-11" class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_fpaths_subreddit(subreddit: <span class="bu">str</span>, <span class="bu">dir</span>: <span class="bu">str</span><span class="op">=</span><span class="st">'../data_test/subreddits'</span>) <span class="op">-&gt;</span> <span class="bu">list</span>: </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    dir_path <span class="op">=</span> Path(<span class="bu">dir</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">list</span>(dir_path.glob(<span class="ss">f'</span><span class="sc">{</span>subreddit<span class="sc">}</span><span class="ss">*.csv'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<p><a href="https://github.com/wuqui/socsemvar/blob/main/socsemvar/read_data.py#L18" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="get_fpaths_subreddit" class="level3">
+<h3 class="anchored" data-anchor-id="get_fpaths_subreddit">get_fpaths_subreddit</h3>
+<blockquote class="blockquote">
+<pre><code> get_fpaths_subreddit (subreddit:str, dir:str='../data_test/subreddits')</code></pre>
+</blockquote>
+<div id="cell-13" class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>get_fpaths_subreddit(<span class="st">'conspiracy'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>[PosixPath('../data_test/subreddits/conspiracy___2020-11-17_11:02:26___2020-11-27_22:59:54.csv'),
+ PosixPath('../data_test/subreddits/conspiracy___2020-03-01_23:00:02___2020-03-09_22:59:59.csv'),
+ PosixPath('../data_test/subreddits/conspiracy___2020-01-03_19:39:57___2020-01-27_22:59:58.csv'),
+ PosixPath('../data_test/subreddits/conspiracy___2020-04-17_04:25:29___2020-04-27_21:59:55.csv'),
+ PosixPath('../data_test/subreddits/conspiracy___2020-05-14_00:35:50___2020-05-27_21:59:58.csv'),
+ PosixPath('../data_test/subreddits/conspiracy___2020-02-06_03:54:59___2020-02-27_22:59:57.csv'),
+ PosixPath('../data_test/subreddits/conspiracy___2020-07-01_22:00:04___2020-07-09_21:59:58.csv'),
+ PosixPath('../data_test/subreddits/conspiracy___2020-11-01_23:00:04___2020-11-09_22:59:56.csv'),
+ PosixPath('../data_test/subreddits/conspiracy___2020-02-01_23:00:04___2020-02-09_22:59:55.csv'),
+ PosixPath('../data_test/subreddits/conspiracy___2020-08-01_22:00:01___2020-08-09_21:59:56.csv'),
+ PosixPath('../data_test/subreddits/conspiracy___2020-10-16_22:19:53___2020-10-27_22:59:46.csv'),
+ PosixPath('../data_test/subreddits/conspiracy___2020-09-01_22:00:03___2020-09-09_21:59:56.csv'),
+ PosixPath('../data_test/subreddits/conspiracy___2020-03-17_15:00:57___2020-03-27_22:59:52.csv'),
+ PosixPath('../data_test/subreddits/conspiracy___2020-05-01_22:00:03___2020-05-09_21:59:48.csv'),
+ PosixPath('../data_test/subreddits/conspiracy___2020-06-15_13:59:56___2020-06-27_21:59:55.csv'),
+ PosixPath('../data_test/subreddits/conspiracy___2020-07-18_14:50:04___2020-07-27_21:59:59.csv'),
+ PosixPath('../data_test/subreddits/conspiracy___2020-12-15_22:12:50___2020-12-27_22:59:52.csv'),
+ PosixPath('../data_test/subreddits/conspiracy___2020-04-01_22:00:01___2020-04-09_21:59:49.csv'),
+ PosixPath('../data_test/subreddits/conspiracy___2020-09-13_14:27:06___2020-09-27_21:59:59.csv'),
+ PosixPath('../data_test/subreddits/conspiracy___2020-12-01_23:00:02___2020-12-09_22:59:59.csv'),
+ PosixPath('../data_test/subreddits/conspiracy___2020-06-01_22:00:04___2020-06-09_21:59:54.csv'),
+ PosixPath('../data_test/subreddits/conspiracy___2020-01-01_23:00:03___2020-01-09_22:59:54.csv'),
+ PosixPath('../data_test/subreddits/conspiracy___2020-10-01_22:00:10___2020-10-09_21:59:57.csv'),
+ PosixPath('../data_test/subreddits/conspiracy___2020-08-17_21:01:44___2020-08-27_21:59:57.csv')]</code></pre>
+</div>
+</div>
+</section>
+<section id="read-comments" class="level3">
+<h3 class="anchored" data-anchor-id="read-comments">read comments</h3>
+<section id="read-a-single-csv-file-of-comments" class="level4">
+<h4 class="anchored" data-anchor-id="read-a-single-csv-file-of-comments">read a single <code>csv</code> file of comments</h4>
+<div id="cell-16" class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fpath <span class="op">=</span> get_fpaths_year(<span class="st">'2019'</span>)[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-17" class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_one_comments_csv(fpath: <span class="bu">str</span>) <span class="op">-&gt;</span> pd.DataFrame:</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        comments <span class="op">=</span> pd.read_csv(</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>            fpath,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>            usecols<span class="op">=</span>[<span class="st">'id'</span>, <span class="st">'created_utc'</span>, <span class="st">'author'</span>, <span class="st">'subreddit'</span>, <span class="st">'body'</span>],</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>            dtype<span class="op">=</span>{</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>                <span class="st">'id'</span>: <span class="st">'string'</span>,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>                <span class="st">'author'</span>: <span class="st">'string'</span>,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>                <span class="st">'subreddit'</span>: <span class="st">'string'</span>,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>                <span class="st">'body'</span>: <span class="st">'string'</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>            },</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>            parse_dates<span class="op">=</span>[<span class="st">'created_utc'</span>],</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>            low_memory<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>            lineterminator<span class="op">=</span><span class="st">'</span><span class="ch">\n</span><span class="st">'</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>        comments_clean <span class="op">=</span> comments<span class="op">\</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>            .dropna()<span class="op">\</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>            .drop_duplicates(subset<span class="op">=</span><span class="st">'id'</span>)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> comments_clean</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">FileNotFoundError</span>:</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>fpath<span class="sc">}</span><span class="ss"> not found on disk'</span>)</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> pd.errors.EmptyDataError:</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>fpath<span class="sc">}</span><span class="ss"> is empty'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<p><a href="https://github.com/wuqui/socsemvar/blob/main/socsemvar/read_data.py#L23" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+</section>
+<section id="read_one_comments_csv" class="level3">
+<h3 class="anchored" data-anchor-id="read_one_comments_csv">read_one_comments_csv</h3>
+<blockquote class="blockquote">
+<pre><code> read_one_comments_csv (fpath:str)</code></pre>
+</blockquote>
+<div id="cell-19" class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>read_one_comments_csv(fpath)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">author</th>
+<th data-quarto-table-cell-role="th">body</th>
+<th data-quarto-table-cell-role="th">created_utc</th>
+<th data-quarto-table-cell-role="th">id</th>
+<th data-quarto-table-cell-role="th">subreddit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>lilfooty</td>
+<td>This'll hurt them more than the loss</td>
+<td>2019-05-07 21:55:57</td>
+<td>emrz5jp</td>
+<td>soccer</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Kaeneko</td>
+<td>I loved vampires *so* much, lol. Always fantas...</td>
+<td>2019-05-07 21:34:12</td>
+<td>emrx5eq</td>
+<td>BDSMcommunity</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Les_Deplorables</td>
+<td>Poor Zombies gonna starve. No Brains!</td>
+<td>2019-05-07 21:21:11</td>
+<td>emrvxjq</td>
+<td>The_Donald</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>viper2544</td>
+<td>No one is going to mention the $12 shipping?</td>
+<td>2019-05-07 21:56:45</td>
+<td>emrz8g7</td>
+<td>legostarwars</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>ninjasquirrelarmy</td>
+<td>Agreed. I showed my stylist the Phoenix hair ...</td>
+<td>2019-05-07 21:34:43</td>
+<td>emrx730</td>
+<td>Instagramreality</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">95</td>
+<td>kleptominotaur</td>
+<td>Is tj still a muscle pharm dude? or parm? what...</td>
+<td>2019-05-07 21:35:05</td>
+<td>emrx88m</td>
+<td>MMA</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">96</td>
+<td>bonesstackedonfloor</td>
+<td>Fidgeting</td>
+<td>2019-05-07 21:45:27</td>
+<td>emry5y5</td>
+<td>AskReddit</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">97</td>
+<td>Perfectoi</td>
+<td>Imagine thinking EV will be sacked. Friendly r...</td>
+<td>2019-05-07 21:18:06</td>
+<td>emrvmx0</td>
+<td>Barca</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">98</td>
+<td>BB-Zwei</td>
+<td>And Dumbo.</td>
+<td>2019-05-07 21:51:35</td>
+<td>emryq8t</td>
+<td>movies</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">99</td>
+<td>Thomas2PP</td>
+<td>How did he got it???</td>
+<td>2019-05-07 21:15:42</td>
+<td>emrveqf</td>
+<td>hearthstone</td>
+</tr>
+</tbody>
+</table>
+
+<p>100 rows × 5 columns</p>
+</div>
+</div>
+</div>
+</div>
+<section id="read-multiple-csv-files-with-comments" class="level4">
+<h4 class="anchored" data-anchor-id="read-multiple-csv-files-with-comments">read multiple <code>csv</code> files with comments</h4>
+<div id="cell-21" class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_multi_comments_csvs(fpaths: <span class="bu">list</span>) <span class="op">-&gt;</span> pd.DataFrame:</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    comments_lst <span class="op">=</span> []</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> fpath <span class="kw">in</span> fpaths:</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        comments <span class="op">=</span> read_one_comments_csv(fpath)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        comments_lst.append(comments)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    comments_concat <span class="op">=</span> pd.concat(</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        comments_lst,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>        axis<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>        ignore_index<span class="op">=</span><span class="va">True</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> comments_concat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<p><a href="https://github.com/wuqui/socsemvar/blob/main/socsemvar/read_data.py#L48" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+</section>
+<section id="read_multi_comments_csvs" class="level3">
+<h3 class="anchored" data-anchor-id="read_multi_comments_csvs">read_multi_comments_csvs</h3>
+<blockquote class="blockquote">
+<pre><code> read_multi_comments_csvs (fpaths:list)</code></pre>
+</blockquote>
+<div id="cell-23" class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>fpaths <span class="op">=</span> get_fpaths_year(<span class="st">'2019'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-24" class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>read_multi_comments_csvs(fpaths)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">author</th>
+<th data-quarto-table-cell-role="th">body</th>
+<th data-quarto-table-cell-role="th">created_utc</th>
+<th data-quarto-table-cell-role="th">id</th>
+<th data-quarto-table-cell-role="th">subreddit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>lilfooty</td>
+<td>This'll hurt them more than the loss</td>
+<td>2019-05-07 21:55:57</td>
+<td>emrz5jp</td>
+<td>soccer</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Kaeneko</td>
+<td>I loved vampires *so* much, lol. Always fantas...</td>
+<td>2019-05-07 21:34:12</td>
+<td>emrx5eq</td>
+<td>BDSMcommunity</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Les_Deplorables</td>
+<td>Poor Zombies gonna starve. No Brains!</td>
+<td>2019-05-07 21:21:11</td>
+<td>emrvxjq</td>
+<td>The_Donald</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>viper2544</td>
+<td>No one is going to mention the $12 shipping?</td>
+<td>2019-05-07 21:56:45</td>
+<td>emrz8g7</td>
+<td>legostarwars</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>ninjasquirrelarmy</td>
+<td>Agreed. I showed my stylist the Phoenix hair ...</td>
+<td>2019-05-07 21:34:43</td>
+<td>emrx730</td>
+<td>Instagramreality</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4794</td>
+<td>m00sedad</td>
+<td>Donald Fucking Trump</td>
+<td>2019-06-19 21:12:28</td>
+<td>erl5gls</td>
+<td>AskReddit</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">4795</td>
+<td>Abramabundiz</td>
+<td>obviously the office or parks, or maybe a spin...</td>
+<td>2019-06-19 21:35:15</td>
+<td>erl7gic</td>
+<td>AskReddit</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4796</td>
+<td>StarrySkye3</td>
+<td>That sounds like someone who argues that other...</td>
+<td>2019-06-19 21:33:57</td>
+<td>erl7ccj</td>
+<td>otherkin</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">4797</td>
+<td>mostoriginalusername</td>
+<td>I hadn't heard about that one. :)</td>
+<td>2019-06-19 21:41:22</td>
+<td>erl7zzj</td>
+<td>catsareliquid</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4798</td>
+<td>ggkiyo</td>
+<td>I won't lie, I was someone who said that dota ...</td>
+<td>2019-06-19 21:54:45</td>
+<td>erl96fb</td>
+<td>Games</td>
+</tr>
+</tbody>
+</table>
+
+<p>4799 rows × 5 columns</p>
+</div>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script type="application/vnd.jupyter.widget-state+json">
+{"state":{},"version_major":2,"version_minor":0}
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/wuqui/socsemvar/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
